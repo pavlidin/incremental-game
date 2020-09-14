@@ -1,3 +1,3 @@
 # FirstIncrementalGame
 
-(https://github.com/abregre "Abregre")
+Collaboration with [Abregre](https://github.com/abregre)
