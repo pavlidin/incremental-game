@@ -140,7 +140,7 @@ function update(index, resourceName) {
     ).toFixed(1);
     //UI
     ownedNeons.innerHTML = player.currencies[0].owned.toFixed(1) + " Neon";
-  }, 1000);
+  }, 500);
 }
 
 interval2 = window.setInterval(() => {
@@ -158,12 +158,14 @@ interval2 = window.setInterval(() => {
 function canvas(neonOwned) {
   var ct = document.getElementById("canvas");
   var ctx = document.getElementById("canvas").getContext("2d");
-  var imgdata, imgdataBlack;
+  var imgdata, imgdata2, imgdata3, imgdataBlack;
   imgdataBlack = ctx.getImageData(0, 0, ct.width, ct.height);
 
-  if (neonOwned > 0)
-    imgdata = ctx.getImageData(0, 0, Math.floor(neonOwned), 10);
-
+  if (neonOwned > 0) {
+    imgdata = ctx.getImageData(0, 0, Math.floor(neonOwned), ct.height/3);
+    imgdata2 = ctx.getImageData(0, 0, Math.floor(neonOwned), ct.height/3);
+    imgdata3 = ctx.getImageData(0, 0, Math.floor(neonOwned), ct.height/3);
+  }
   var imgdatalen = imgdata?.data?.length;
   var imgdataBlacklen = imgdataBlack?.data?.length;
   for (var i = 0; i < imgdataBlacklen / 4; i++) {
@@ -180,6 +182,18 @@ function canvas(neonOwned) {
     imgdata.data[4 * i + 1] = 0; // GREEN (0-255)
     imgdata.data[4 * i + 2] = 255; // BLUE (0-255)
     imgdata.data[4 * i + 3] = 255; // APLHA (0-255)
+
+    imgdata2.data[4 * i] = 0; // RED (0-255)
+    imgdata2.data[4 * i + 1] = 255; // GREEN (0-255)
+    imgdata2.data[4 * i + 2] = 0; // BLUE (0-255)
+    imgdata2.data[4 * i + 3] = 255; // APLHA (0-255)
+
+    imgdata3.data[4 * i] = 255; // RED (0-255)
+    imgdata3.data[4 * i + 1] = 0; // GREEN (0-255)
+    imgdata3.data[4 * i + 2] = 0; // BLUE (0-255)
+    imgdata3.data[4 * i + 3] = 255; // APLHA (0-255)
   }
   if (imgdata) ctx.putImageData(imgdata, 0, 0);
+  if (imgdata2) ctx.putImageData(imgdata2, 0, ct.height/3);
+  if (imgdata3) ctx.putImageData(imgdata3, 0, 2*(ct.height/3));
 }
