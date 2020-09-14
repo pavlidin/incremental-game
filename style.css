@@ -29,10 +29,6 @@ span {
   margin: 0.8rem;
 }
 
-.resources {
-  border: 2px solid deeppink;
-}
-
 .resource {
   font-weight: bold;
   color: var(--clr-white);
