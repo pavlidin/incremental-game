@@ -1,10 +1,11 @@
 :root {
+  --clr-dark: rgb(41, 41, 41);
   --clr-white: #d3d3d3;
   --clr-btn: #585858;
   --clr-btn-dark: #464646;
 }
 body {
-  background-color: rgb(41, 41, 41);
+  background-color: var(--clr-dark);
 }
 
 .container {
@@ -50,11 +51,36 @@ span {
 }
 .resource:active {
   transform: scale(0.9);
-  transition: all 0.2s ease-in-out;
+  transition: none;
 }
 
 .crafting {
   color: var(--clr-white);
-  background-color: brown;
+  background-color: black;
   height: 45vh;
+  width: 100%;
+  margin: auto;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.disabled {
+  background-color: var(--clr-dark);
+  color: var(--clr-btn);
+  pointer-events:none;
+}
+
+.disabled:hover {
+  background-color: var(--clr-dark);
+  color: var(--clr-btn);
+  border: 2px solid var(--clr-btn);
+}
+
+.disabled:active {
+  transform: none;
+}
+
+#ownedNeons {
+  color: greenyellow;
 }
