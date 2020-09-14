@@ -30,11 +30,7 @@ span {
 }
 
 .resources {
-  /* border: 2px solid deeppink; */
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border: 2px solid deeppink;
 }
 
 .resource {
@@ -52,8 +48,9 @@ span {
 
 .resource:hover {
   background-color: var(--clr-btn-dark);
+  color: greenyellow;
   transition: all 0.2s ease-in-out;
-  border: 2px solid var(--clr-btn-dark);
+  border: 2px solid greenyellow;
 }
 .resource:active {
   transform: scale(0.9);
@@ -61,6 +58,7 @@ span {
 }
 
 .crafting {
+  color: var(--clr-white);
   background-color: brown;
   height: 45vh;
 }

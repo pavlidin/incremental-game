@@ -1,8 +1,11 @@
+let resourcesCount = 0;
+
 let game = {};
 let player = {};
 
 let randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
+const crafting = document.querySelector(".crafting");
 const resources = document.querySelector(".resources");
 const resource = document.querySelectorAll(".resource");
 
@@ -76,10 +79,33 @@ game.resources = {
     baseCost: 80,
   },
 };
+player.resources = {};
 
-Object.keys(game.resources).forEach((el, index) => {
-  resources.innerHTML += `<div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 resource p-3 m-2 mx-1">${
+Object.keys(game.resources).forEach((_el, index) => {
+  resources.innerHTML += `<div class="col p-1"><div class="resource p-3 m-2" id="resource-${index}">${
     Object.values(game.resources)[index].name
-  }</div>`;
-  
+  }</div></div>`;
+});
+
+Object.keys(game.resources).forEach(() => {
+  resourcesCount++;
+});
+
+arr = new Array(resourcesCount).fill(0);
+document.querySelectorAll(".resource").forEach((item) => {
+  item.addEventListener("click", (e) => {
+    let index = +e.target.id.substr(9);
+    let resourceName = game.resources[index].name;
+    player.resources[index] = { [resourceName]: ++arr[index] };
+    crafting.innerHTML = '+1 ' + resourceName;
+    if (document.querySelector(`#resource-${index + 1}`)) {
+      document.querySelector(`#resource-${index + 1}`).style.display = "";
+    }
+  });
+});
+
+document.querySelectorAll(".resource").forEach((item, itemIndex) => {
+  if (itemIndex > 0) {
+    item.style.display = "none";
+  }
 });
